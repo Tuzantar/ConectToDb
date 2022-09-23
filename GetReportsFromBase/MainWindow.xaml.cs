@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 
 namespace GetReportsFromBase
 {
@@ -29,13 +28,20 @@ namespace GetReportsFromBase
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((cmbx.Items.Count == 0) || cmbx.SelectedValue is null) 
-            { 
-                Connect(); 
+            if ((cmbx.Items.Count == 0) && cmbx.SelectedValue is null && cmbx.Text == "")
+            {
+                Connect();
             }
-            else 
-            { 
-                Connect(cmbx.SelectedValue.ToString()); 
+            else
+            {
+                if (cmbx.SelectedValue is null)
+                { 
+                    Connect(cmbx.Text);
+                }
+                else
+                {
+                    Connect(cmbx.SelectedValue.ToString());
+                }
             }
         }
         private void Connect()

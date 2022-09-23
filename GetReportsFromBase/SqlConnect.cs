@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.SqlServer.Server;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace GetReportsFromBase
 {
@@ -30,7 +32,6 @@ namespace GetReportsFromBase
             _UserId = UserId;
             _Password = Password;
             _DbName = DbName;
-            Connect();
         }
         public SqlConnect(string ServerName, string UserId, string Password)
         {
@@ -38,7 +39,6 @@ namespace GetReportsFromBase
             _UserId = UserId;
             _Password = Password;
             _DbName = "master";
-            Connect();
         }
         public void Connect()
         {
@@ -49,7 +49,16 @@ namespace GetReportsFromBase
             "User id=" + _UserId.ToString() + ";" +
             "Password=" + _Password.ToString() + ";" +
             "Integrated Security=false;";
-            if(_DbName == "master") { GetBaseList(); }
+            try
+            {
+                GetBaseList();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                _BaseList = new List<string>();
+            }
         }
 
         public void GetBaseList()
@@ -63,7 +72,7 @@ namespace GetReportsFromBase
             DataTable table = new DataTable();
             adpt.Fill(table);
             _BaseList = new List<string>();
-            foreach(DataRow dr in table.Rows)
+            foreach (DataRow dr in table.Rows)
             {
                 _BaseList.Add(dr.ItemArray[0].ToString());
             }
