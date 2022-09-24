@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Azure;
+using GetReportsFromBase.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,6 +61,12 @@ namespace GetReportsFromBase
         {
             _sqlConnect = new SqlConnect(txt_ip.Text, txt_id.Text, txt_pwd.Password, DbName);
             _sqlConnect.Connect();
+        }
+
+        private void btn_rep_Click(object sender, RoutedEventArgs e)
+        {
+            Reports Reports = new Reports();
+            Reports.Show();
         }
     }
 }

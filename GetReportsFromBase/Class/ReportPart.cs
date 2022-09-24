@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GetReportsFromBase
+namespace GetReportsFromBase.Class
 {
     internal class ReportPart
     {
@@ -16,11 +16,11 @@ namespace GetReportsFromBase
         public string szl_idpb { get { return _szl_idpb; } set { _szl_idpb = value; } }
         public string szl_syntax { get { return _szl_syntax; } set { _szl_syntax = value; } }
         public string sp { get { return _sp; } set { _sp = value; } }
-        public ReportPart(int szl_stx_id, string szl_idpb, string szl_syntax)
+        public ReportPart()
         {
-            _szl_stx_id = szl_stx_id;  
-            _szl_idpb = szl_idpb;
-            _szl_syntax = szl_syntax;
+            _szl_idpb = "";
+            _szl_syntax = "";
+            _sp = "";
         }
     }
 }

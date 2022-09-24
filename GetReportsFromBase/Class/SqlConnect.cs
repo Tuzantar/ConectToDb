@@ -9,7 +9,7 @@ using System.Data;
 using System.Windows.Controls;
 using System.Windows;
 
-namespace GetReportsFromBase
+namespace GetReportsFromBase.Class
 {
     internal class SqlConnect
     {
