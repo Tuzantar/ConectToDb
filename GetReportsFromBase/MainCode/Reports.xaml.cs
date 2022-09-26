@@ -60,6 +60,7 @@ namespace GetReportsFromBase
                 }
             }
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog = new CommonOpenFileDialog();
             //dialog.InitialDirectory = "C:\\Users";
             dialog.IsFolderPicker = true;
             dialog.Multiselect = false;
