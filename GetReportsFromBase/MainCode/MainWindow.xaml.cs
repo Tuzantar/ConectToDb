@@ -26,47 +26,26 @@ namespace GetReportsFromBase
         public MainWindow()
         {
             InitializeComponent();
+            _sqlConnect = new SqlConnect();
+            DataContext = _sqlConnect;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if ((cmbx.Items.Count == 0) && cmbx.SelectedValue is null && cmbx.Text == "")
-            {
-                Connect();
-            }
-            else
-            {
-                if (cmbx.SelectedValue is null)
-                { 
-                    Connect(cmbx.Text);
-                }
-                else
-                {
-                    Connect(cmbx.SelectedValue.ToString());
-                }
-            }
-        }
-        private void Connect()
-        {
-            _sqlConnect = new SqlConnect(txt_ip.Text, txt_id.Text, txt_pwd.Password);
             _sqlConnect.Connect();
-            List<string> list = new List<string>(_sqlConnect.BaseList);
-            cmbx.Items.Clear();
-            foreach (string s in list)
-            {
-                cmbx.Items.Add(s);
-            }
-        }
-        private void Connect(string DbName)
-        {
-            _sqlConnect = new SqlConnect(txt_ip.Text, txt_id.Text, txt_pwd.Password, DbName);
-            _sqlConnect.Connect();
+            btn_rep.IsEnabled = _sqlConnect.IsConectedToBase;
         }
 
         private void btn_rep_Click(object sender, RoutedEventArgs e)
         {
-            Reports Reports = new Reports();
+            Reports Reports = new Reports(_sqlConnect);
+            //Reports.setConnect(_sqlConnect);
             Reports.Show();
+        }
+
+        private void txt_pwd_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            _sqlConnect.Password = txt_pwd.Password;
         }
     }
 }

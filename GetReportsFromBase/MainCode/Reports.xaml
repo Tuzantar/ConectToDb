@@ -8,15 +8,12 @@
         Title="Reports" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding ReportsCol}">
+            <DataGridTextColumn Header="ID" Binding="{Binding szl_nazwa}"/>
+        </DataGrid>
         
     </Grid>
 </Window>

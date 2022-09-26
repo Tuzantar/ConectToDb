@@ -5,23 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GetReportsFromBase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="200">
+        Title="Connect to server/base" Height="350" Width="300">
     <Grid>
         <Grid Margin="0,0,0,5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Name="txt_ip" ToolTip="Server Name"/>
-            <ComboBox Grid.Row="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Name="cmbx" IsEditable="True" ToolTip="DB Name"/>
-            <TextBox Grid.Row="2" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Name="txt_id" ToolTip="User"/>
-            <PasswordBox Grid.Row="3" HorizontalAlignment="Stretch" Margin="5" PasswordChar="*" VerticalAlignment="Top" Name="txt_pwd" ToolTip="Password"/>
-            <Button Grid.Row="4" Content="Connect" HorizontalAlignment="Stretch" Margin="5" Click="Button_Click" Name="btn_connect"/>
-            <Button Grid.Row="5" Content="Go to reports" HorizontalAlignment="Stretch" Margin="5" Name="btn_rep" Click="btn_rep_Click"/>
+            <StackPanel>
+                <Label Content="Server:" />
+                <TextBox HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Top" Name="txt_ip" ToolTip="Server Name"
+                     Text="{Binding ServerName}" />
+                <Label Content="Db Name:" />
+                <ComboBox HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Name="cmbx" IsEditable="False" ToolTip="DB Name"
+                      Text="{Binding DbName.DB_Name}" SelectedValue="{Binding DbName}" ItemsSource="{Binding BaseList, Mode=OneWay}" 
+                      DisplayMemberPath="DB_Name" />
+                <Label Content="User:" />
+                <TextBox HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Top" Name="txt_id" ToolTip="User"
+                     Text="{Binding UserId}" />
+                <Label Content="Password:" />
+                <PasswordBox HorizontalAlignment="Stretch" Margin="5" PasswordChar="*" VerticalAlignment="Top" Name="txt_pwd" ToolTip="Password"
+                     Password="" PasswordChanged="txt_pwd_PasswordChanged" />
+                <Button Content="Connect" HorizontalAlignment="Stretch" Margin="5" Click="Button_Click" Name="btn_connect"/>
+                <Button Content="Go to reports" HorizontalAlignment="Stretch" Margin="5" Name="btn_rep" Click="btn_rep_Click"
+                    IsEnabled="{Binding IsConectedToBase, Mode=TwoWay}" />
+            </StackPanel>
 
         </Grid>
 
